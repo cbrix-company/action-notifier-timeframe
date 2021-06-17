@@ -54,4 +54,4 @@ if __name__ == '__main__':
 
     left, right = calculate_timeframes(params.interval, params.time_unit)
     timeframe = transform_timeframes(left, right)
-    print(timeframe)
+    print('::set-output name={0}::{1}'.format('timeframe', timeframe))
