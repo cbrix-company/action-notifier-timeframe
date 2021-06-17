@@ -1,3 +1,4 @@
+import argparse
 import os
 import sys
 from datetime import datetime, timedelta
@@ -22,12 +23,9 @@ def calculate_timeframes(interval, time_unit):
     if time_unit == "minutes":
         if now.minute == interval:
             diff = float(now.minute)
-        else:
-            diff = now.minute / interval
-
-        if diff.is_integer():
             left_minute = diff
         else:
+            diff = now.minute / interval
             left_minute = int(diff) * interval
 
         left_frame = copy_datetime(now, time_unit, minute=int(left_minute), second=0)
@@ -47,15 +45,13 @@ def transform_timeframes(left, right):
     )
 
 
-if __name__ == "__main__":
-    interval = os.getenv('NOTIFIER_INTERVAL')
-    if not interval:
-        sys.exit('NOTIFIER_INTERVAL is required')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--interval', type=int, dest='interval', required=True,  help='interval for time unit')
+    parser.add_argument('--time-unit', type=str, dest='time_unit', required=True, help='time unit for interval')
 
-    time_unit = os.getenv('NOTIFIER_TIMEUNIT')
-    if not time_unit:
-        sys.exit('NOTIFIER_TIMEUNIT is required')
+    params = parser.parse_args()
 
-    left, right = calculate_timeframes(int(interval), time_unit)
+    left, right = calculate_timeframes(params.interval, params.time_unit)
     timeframe = transform_timeframes(left, right)
     print(timeframe)
