@@ -14,5 +14,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.interval }}
     - ${{ inputs.time-unit }}
+    - ${{ inputs.interval }}
