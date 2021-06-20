@@ -1,6 +1,4 @@
 import argparse
-import os
-import sys
 from datetime import datetime, timedelta
 
 import pytz
