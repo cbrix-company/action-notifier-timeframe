@@ -138,4 +138,4 @@ Two executions could happen close to each other when the cache is cold.
 | Timeframe     | Current time  | Cache hit  |
 | ------------- |:-------------:| -----:|
 | 15:00-16:00   | 15:59         | <span style="color:red">X</span>     |
-| 16:00-17:00   | 16:00         | <span style="color:red">V</span>     |
+| 16:00-17:00   | 16:00         | <span style="color:red">X</span>     |
